@@ -76,7 +76,7 @@ class Trainer(BaseTrainer):
         scalars = {
             f"{mode}/PSNR": self.metrics["psnr"].detach(),
             f"{mode}/s-var": self.model_module.s_var.item(),
-            f"{mode}/shadow_mean": data["shadow_map"],
+            f"{mode}/shadow_mean": data["shadow_map"].mean(),
         }
         if "curvature" in self.weights:
             scalars[f"{mode}/curvature_weight"] = self.weights["curvature"]
@@ -100,7 +100,7 @@ class Trainer(BaseTrainer):
                 f"{mode}/vis/normal": wandb_image(data["normal_map"], from_range=(-1, 1)),
                 f"{mode}/vis/inv_depth": wandb_image(1 / (data["depth_map"] + 1e-8) * self.cfg.trainer.depth_vis_scale),
                 f"{mode}/vis/opacity": wandb_image(data["opacity_map"]),
-                f"{mode}/vis/shadow_map": wandb_image(data["shadow_map"]),
+                f"{mode}/vis/shadow_map": wandb_image(data["shadow_map"].reshape(data["opacity_map"].shape)),
             })
         wandb.log(images, step=self.current_iteration)
 
