@@ -1,1 +1,3 @@
 # playaround_with_neuralangelo
+
+* Doesn't work at all for reconstruction in the wild even when I add shadow layer (prone to trivial solution)...
