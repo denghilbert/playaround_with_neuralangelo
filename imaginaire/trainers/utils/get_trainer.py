@@ -82,10 +82,10 @@ def _wrap_model(cfg, model):
             model,
             device_ids=[cfg.local_rank],
             output_device=cfg.local_rank,
-            find_unused_parameters=cfg.trainer.ddp_config.find_unused_parameters,
-            #find_unused_parameters=True,
-            static_graph=cfg.trainer.ddp_config.static_graph,
-            #static_graph=False,
+            #find_unused_parameters=cfg.trainer.ddp_config.find_unused_parameters,
+            find_unused_parameters=True,
+            #static_graph=cfg.trainer.ddp_config.static_graph,
+            static_graph=False,
             broadcast_buffers=False,
         )
     else:
