@@ -1,0 +1,27 @@
+_parent_: projects/neuralangelo/configs/base.yaml
+
+model:
+    object:
+        sdf:
+            mlp:
+                inside_out: False   # True for Meetingroom.
+            encoding:
+                coarse2fine:
+                    init_active_level: 8
+    appear_embed:
+        enabled: True
+        dim: 8
+
+data:
+    type: projects.neuralangelo.data
+    root: datasets/eu
+    num_images: 309  # The number of training images.
+    train:
+        image_size: [845,1200]
+        batch_size: 1
+        subset:
+    val:
+        image_size: [300,426]
+        batch_size: 1
+        subset: 1
+        max_viz_samples: 16
